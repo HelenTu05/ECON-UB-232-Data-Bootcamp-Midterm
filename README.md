@@ -148,7 +148,7 @@ The correlation heatmap confirms the single largest predictor correlation is the
 ## 8. Interactive Dashboard (Streamlit)
 
 To complement the static notebook analysis, this project includes an **interactive Streamlit dashboard** (`app.py`) that allows users to explore the data dynamically without writing any code.
-
+![Steamlit_Interactive Dashboard](fig/Streamlit_illustration.png)
 ### Features
 
 | Page | Description |
