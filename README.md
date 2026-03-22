@@ -1,4 +1,4 @@
-# What Factors Influence Restaurant Star Ratings on Yelp?
+🍽️ Yelp Restaurant EDA — What factors influence star ratings?
 ### An Exploratory Data Analysis | Data Bootcamp Midterm Project
 
 ---
