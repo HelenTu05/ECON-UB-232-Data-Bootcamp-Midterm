@@ -173,13 +173,23 @@ The correlation heatmap confirms the single largest predictor correlation is the
 
 ## 6. Conclusions & Limitations
 
-**Key takeaways:**
-1. **Price is not destiny** — mid-range restaurants ($–$$) outperform both budget and luxury tiers, suggesting a value-for-money sweet spot.
-2. **Popular restaurants rate higher**, but causation is ambiguous — it may be quality driving both popularity and ratings, or review dynamics inflating well-established venues.
-3. **Cuisine type matters enormously** — a nearly 1.5-star spread separates specialty/artisanal categories from fast food, reflecting both actual quality differences and audience composition effects.
-4. **Long hours hurt ratings** — high-hours businesses are disproportionately low-rated chain restaurants, not hard-working premium establishments.
-5. **Upscale amenities (outdoor seating, reservations) signal quality** and associate with higher ratings, while delivery signals chain/fast-food status and associates with lower ratings.
-6. **Sentiment tracks stars**, validating that the Yelp rating and the review text capture consistent signals.
+Across nine sub-questions and over 67,000 restaurant records, a coherent picture emerges of how Yelp star ratings are shaped:
+
+**What drives ratings up:**
+- Mid-range pricing ($–$$), hitting the value-for-money sweet spot
+- Niche or artisanal cuisine categories (specialty food, desserts, bakeries)
+- Upscale amenities like outdoor seating and reservations
+- A large, established review base — which both reflects and reinforces quality
+- Favorable geographic markets
+
+**What drives ratings down:**
+- High operating hours — a proxy for fast-food and chain restaurant status
+- Offering delivery or being "good for kids" — both signal casual/chain formats
+- Being newly opened — early inflated ratings converge downward over time
+- Fast food and high-volume cuisine categories where reviewer expectations are hardest to exceed
+
+**The bigger picture:**
+Many of the strongest predictors of rating are not direct measures of food quality — they are **structural signals of restaurant type and operating model**. Price tier, hours, amenities, and cuisine collectively communicate what kind of establishment a restaurant is, and reviewers calibrate their expectations accordingly. This means a raw star rating should always be interpreted in context: a 3.5★ fast-food restaurant and a 3.5★ fine-dining venue represent very different levels of customer satisfaction relative to expectations. Understanding the Yelp ecosystem requires looking not just at the score, but at the full profile of the restaurant behind it.
 
 **Limitations:** Missing data are substantial for several features (up to 34% for `has_reservation`). All associations are observational — confounding by restaurant type, market, and reviewer demographics is likely throughout. The TextBlob sentiment model is lexical and context-free, limiting its precision. Future work could apply a fine-tuned transformer model, incorporate review recency, or use multilevel modeling to better account for city and cuisine effects.
 
