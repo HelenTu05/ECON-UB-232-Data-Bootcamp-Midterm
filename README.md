@@ -130,7 +130,7 @@ TextBlob polarity scores computed on 50,000 sampled reviews confirm strong align
 The violin plots show that sentiment distributions are broadly overlapping across star levels, reflecting the well-known limitation of lexical sentiment analysis: a review can be linguistically positive while still expressing disappointment relative to expectations. Nonetheless, the directional signal is robust and consistent.
 <img width="1846" height="554" alt="image" src="https://github.com/user-attachments/assets/d84de10d-7df4-4f7f-bf66-57512d069335" />
 
-### Q8 — Does a Restaurant's Rating Change Over Time?
+### Does a Restaurant's Rating Change Over Time?
 **Finding 1 — Ratings drift upward over time, but slowly.**
 Across the full dataset (2008–2019), average monthly restaurant ratings increased from approximately 3.75 to 4.0 stars. This likely reflects both platform maturation and a gradual improvement in average restaurant quality as lower-rated businesses close.
 <img width="1516" height="526" alt="image" src="https://github.com/user-attachments/assets/95908543-303c-4d2b-a043-6079e7c69421" />
