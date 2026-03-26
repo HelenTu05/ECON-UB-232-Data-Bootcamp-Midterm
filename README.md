@@ -15,7 +15,7 @@ Online reviews have become the dominant mechanism through which consumers discov
 
 **Central Research Question:** *What factors influence a restaurant's star rating on Yelp?*
 
-We decompose this into seven sub-questions:
+We decompose this into nine sub-questions:
 
 | # | Question | Method |
 |---|----------|--------|
@@ -61,6 +61,7 @@ The final analytic dataset contains **23 features** across **67,533 rows**, sati
 ## 3. Descriptive Statistics
 
 The target variable — **star rating** — is right-skewed with a mean of **3.55★** and a median of **3.5★**. The modal rating is **4.0★** (n=16,774), followed by **3.5★** (n=14,383). Fewer than 500 restaurants (0.7%) received the minimum 1.0★. The distribution's left tail is thin: poor ratings are relatively rare in the Yelp ecosystem, consistent with a documented "positivity bias" in online reviews, where dissatisfied customers are less likely to leave reviews than satisfied ones.
+<img width="1406" height="554" alt="image" src="https://github.com/user-attachments/assets/cdd1230d-7299-4ea4-819a-9135d73ab486" />
 
 Other key descriptive statistics:
 - **Average review count**: 75.1 (median: 27) — highly right-skewed, with a maximum of 7,568
@@ -78,12 +79,15 @@ A one-way ANOVA comparing mean star ratings across the four price tiers reveals 
 Mid-range restaurants ($$: mean = **3.60★**) and upscale restaurants ($$$: mean = **3.60★**) both outperform budget restaurants ($: mean = **3.38★**). Strikingly, luxury establishments ($$$$) average only **3.43★** — barely above the budget tier. This inverted-U pattern likely reflects heightened expectations: diners at expensive restaurants apply stricter standards when rating, eroding the rating advantage that price otherwise confers. Budget restaurants may also suffer from genuine quality limitations, while mid-range restaurants hit the "sweet spot" of value-for-money satisfaction.
 
 Box plots confirm that all four tiers share near-identical medians (3.5★) and IQRs, indicating that price explains differences in means but not the full shape of the distribution.
+<img width="1516" height="554" alt="image" src="https://github.com/user-attachments/assets/4f7ae827-5e27-4923-a947-d279520f204c" />
+
 
 ### Q2 — Review Volume vs. Star Rating
 
 The Pearson correlation between log(1 + review count) and star rating is **r = +0.180 (p < 0.001)** — a weak but statistically significant positive association. The bucket analysis makes this trend visually clear: restaurants with 1–10 reviews average ~3.45★, while those with 500+ reviews average ~4.00★. The log-scale scatter plot shows a positive trend line (slope = 0.133).
 
 This relationship likely reflects **survivorship bias**: restaurants accumulating large numbers of reviews tend to be popular and successful, and quality drives both popularity and ratings. It is also possible that review inflation plays a role — very high-review-count establishments may attract fans more than critics.
+<img width="1516" height="554" alt="image" src="https://github.com/user-attachments/assets/99cfdcfa-cb84-45ad-91da-8d6756119fa5" />
 
 ### Q3 — Cuisine Type vs. Star Rating
 
@@ -92,18 +96,21 @@ Among the top 20 most common cuisines (each with ≥30 restaurants), there is a 
 At the bottom, **Fast Food** averages just **2.56★** (n=2,227), with **Burgers** (low-3★ range) and **Chicken Wings** not far above. **Pizza** (3.28★) and **Chinese** (3.34★) — despite being two of the most popular categories — rate below the overall mean of 3.55★, possibly due to high volume generating more diverse (and critical) reviewers.
 
 The overall mean line (3.55★) cleanly bisects the cuisine chart, with artisanal/specialty categories consistently above it and high-volume fast-casual categories below.
+<img width="1176" height="746" alt="image" src="https://github.com/user-attachments/assets/2227868b-67a2-4020-af6d-53bd00de29a4" />
 
 ### Q4 — Geographic Location vs. Star Rating
 
 A one-way ANOVA of city-level mean ratings is also significant (**F = 29.12, p < 0.001**), confirming that geography explains some variance in ratings. Among 15 major cities analyzed, **Santa Barbara, CA** leads at **3.88★**, followed by **New Orleans, LA** (3.76★). At the lower end, **Metairie, LA** averages just **3.41★** and **Tucson, AZ** averages **3.50★**.
 
 The geographic scatter plot shows that ratings are broadly distributed across the continental U.S. and Canada (Edmonton appears in the dataset), with no strong spatial clustering visible at the macro level. Local cultural norms around reviewing behavior, the composition of restaurant categories in each city, and average cost-of-living may all contribute to city-level differences.
+<img width="1715" height="665" alt="image" src="https://github.com/user-attachments/assets/c76b10b9-ecff-4fca-97cf-4adb9ae59360" />
 
 ### Q5 — Operating Hours vs. Star Rating
 
 Contrary to an intuitive expectation that "busier = better," operating hours show a **negative correlation** with star rating (**r = −0.443, p < 0.001**). The slope in the scatter plot (−0.0134 stars per additional weekly hour) indicates that restaurants open fewer hours per week tend to rate higher.
 
 The binned bar chart confirms this: restaurants open fewer than 30 hours per week average ~**4.07★**, while those open 70–90 hours average ~**3.44★**. This pattern has a plausible interpretation: shorter-hours restaurants tend to be specialty, artisanal, or fine-dining establishments (e.g., a bakery open Tuesday–Saturday mornings), while long-hours operations are disproportionately fast-food chains and 24-hour diners — categories that rate systematically lower.
+<img width="1516" height="554" alt="image" src="https://github.com/user-attachments/assets/200f8ff0-fc53-4cca-94bb-02982dff15f3" />
 
 ### Q6 — Amenity Attributes vs. Star Rating
 
@@ -114,12 +121,14 @@ The results reveal an unexpected split:
 - **Negative associations**: Delivery (−0.225★) and Good for Kids (−0.061★) are associated with *lower* ratings.
 
 Outdoor seating and reservations are proxies for a higher-end dining experience, explaining their positive effect. The negative sign for delivery is striking — restaurants offering delivery tend to be lower-quality fast-food or chain establishments, driving down their average rating. The "Good for Kids" effect likely reflects a similar confound: family-casual chains dominate that category.
+<img width="1626" height="554" alt="image" src="https://github.com/user-attachments/assets/f95f08e8-8161-4cb8-a1bc-eabf47f760fa" />
 
 ### Q7 — Review Sentiment vs. Star Rating
 
 TextBlob polarity scores computed on 50,000 sampled reviews confirm strong alignment between review text sentiment and star ratings. Mean sentiment rises monotonically across star tiers: 1-star reviews average approximately **−0.04** polarity (slightly negative), 2-star reviews ~**0.08**, 3-star reviews ~**0.20**, 4-star reviews ~**0.30**, and 5-star reviews ~**0.36** (strongly positive).
 
 The violin plots show that sentiment distributions are broadly overlapping across star levels, reflecting the well-known limitation of lexical sentiment analysis: a review can be linguistically positive while still expressing disappointment relative to expectations. Nonetheless, the directional signal is robust and consistent.
+<img width="1846" height="554" alt="image" src="https://github.com/user-attachments/assets/d84de10d-7df4-4f7f-bf66-57512d069335" />
 
 ### Q8 — Does a Restaurant's Rating Change Over Time?
 **Finding 1 — Ratings drift upward over time, but slowly.**
