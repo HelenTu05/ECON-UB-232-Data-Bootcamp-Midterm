@@ -134,6 +134,9 @@ In the first 13 months after a restaurant's first review, average ratings run ab
 July produces the highest average ratings (~3.87), while December is the lowest (~3.78). The effect is small (less than 0.1 stars), which suggests seasonal variation is real but not practically significant for most use cases.
 <img width="1076" height="416" alt="image" src="https://github.com/user-attachments/assets/6f334bbe-1050-4ade-8e82-151d5d632154" />
 
+#### Interpretation
+Taken together, these three findings suggest that Yelp restaurant ratings are not static reflections of quality — they are shaped by when and how much a restaurant is reviewed. New restaurants benefit from an early enthusiasm bias that fades within their first year. At the platform level, average ratings have crept upward over time, possibly due to a combination of genuine quality improvement and shifting reviewer norms. Seasonal effects exist but are too small to be practically meaningful. The key takeaway is that a restaurant's rating should be interpreted in the context of its age and review history.
+
 ### Popularity vs. Rating — Does Popularity Equal Quality?
 **Finding 1 — Review count and star rating are weakly but significantly positively correlated.**  
 A Pearson correlation of r = 0.180 (p < 0.001) indicates that restaurants with more reviews tend to have slightly higher ratings. However, the effect size is small — review volume alone is a poor predictor of rating. More meaningfully, the boxplot shows that restaurants with 500+ reviews have a noticeably higher median rating (~4.25) and tighter interquartile range than low-review restaurants.
@@ -147,6 +150,8 @@ Contrary to our initial hypothesis that high foot traffic would dilute quality p
 Standard deviation drops from ~0.98 for restaurants with 1–10 reviews to ~0.42 for restaurants with 500+ reviews. This is a textbook illustration of the Law of Large Numbers: with few reviews, a single outlier experience can dominate the average; with many reviews, ratings converge to a stable estimate of true quality.
 <img width="966" height="416" alt="image" src="https://github.com/user-attachments/assets/756d733f-83b1-4794-8022-7ace112932d5" />
 
+#### Interpretation
+* The relationship between popularity and quality is more nuanced than a simple equation. Review volume has a weak positive correlation with ratings, but its more meaningful effect is on rating reliability — popular restaurants produce more trustworthy scores. The check-in analysis challenges the common assumption that "crowded means overrated": the most visited restaurants actually rate slightly higher, suggesting sustained traffic reflects earned reputation rather than hype. The core insight is that popularity and quality are not equivalent, but they are not opposites either — high engagement tends to stabilize and modestly elevate ratings over time.
 ---
 
 ## 5. Multivariate Analysis
