@@ -26,6 +26,8 @@ We decompose this into seven sub-questions:
 | Q5 | Do longer **operating hours** predict better ratings? | Pearson r + scatter plot |
 | Q6 | Do **amenity attributes** (parking, delivery, etc.) matter? | Mann-Whitney U test |
 | Q7 | Does **review sentiment** align with star ratings? | TextBlob polarity + correlation |
+| Q8 | Does a restaurant's **rating change over time**? | Time-series + lifecycle analysis |
+| Q9 | Does **popularity equal quality**? | Review volume+ check-in tiers + rating variance |
 
 ---
 
@@ -118,6 +120,32 @@ Outdoor seating and reservations are proxies for a higher-end dining experience,
 TextBlob polarity scores computed on 50,000 sampled reviews confirm strong alignment between review text sentiment and star ratings. Mean sentiment rises monotonically across star tiers: 1-star reviews average approximately **−0.04** polarity (slightly negative), 2-star reviews ~**0.08**, 3-star reviews ~**0.20**, 4-star reviews ~**0.30**, and 5-star reviews ~**0.36** (strongly positive).
 
 The violin plots show that sentiment distributions are broadly overlapping across star levels, reflecting the well-known limitation of lexical sentiment analysis: a review can be linguistically positive while still expressing disappointment relative to expectations. Nonetheless, the directional signal is robust and consistent.
+
+### Q8 — Does a Restaurant's Rating Change Over Time?
+**Finding 1 — Ratings drift upward over time, but slowly.**
+Across the full dataset (2008–2019), average monthly restaurant ratings increased from approximately 3.75 to 4.0 stars. This likely reflects both platform maturation and a gradual improvement in average restaurant quality as lower-rated businesses close.
+<img width="1516" height="526" alt="image" src="https://github.com/user-attachments/assets/95908543-303c-4d2b-a043-6079e7c69421" />
+
+**Finding 2 — New restaurants exhibit a "honeymoon effect."**  
+In the first 13 months after a restaurant's first review, average ratings run above the overall mean (~3.83 stars). After month 13, ratings decline and converge toward the mean. This pattern is consistent with early reviews coming disproportionately from enthusiastic early adopters, friends, and family — a well-documented bias in crowd-sourced review platforms.
+<img width="1296" height="526" alt="image" src="https://github.com/user-attachments/assets/0956ddc8-c0f2-4a3c-8019-6fcbac7f9442" />
+
+**Finding 3 — Ratings peak in summer and dip in December.**  
+July produces the highest average ratings (~3.87), while December is the lowest (~3.78). The effect is small (less than 0.1 stars), which suggests seasonal variation is real but not practically significant for most use cases.
+<img width="1076" height="416" alt="image" src="https://github.com/user-attachments/assets/6f334bbe-1050-4ade-8e82-151d5d632154" />
+
+### Popularity vs. Rating — Does Popularity Equal Quality?
+**Finding 1 — Review count and star rating are weakly but significantly positively correlated.**  
+A Pearson correlation of r = 0.180 (p < 0.001) indicates that restaurants with more reviews tend to have slightly higher ratings. However, the effect size is small — review volume alone is a poor predictor of rating. More meaningfully, the boxplot shows that restaurants with 500+ reviews have a noticeably higher median rating (~4.25) and tighter interquartile range than low-review restaurants.
+<img width="1516" height="560" alt="image" src="https://github.com/user-attachments/assets/38dff5bf-161b-4979-b860-78200b5cbb01" />
+
+**Finding 2 — "Viral" restaurants (high check-ins) actually have slightly higher ratings, not lower.**  
+Contrary to our initial hypothesis that high foot traffic would dilute quality perception, the top check-in quartile shows the highest mean rating (~3.68) compared to lower tiers. One interpretation is that sustained popularity reflects genuine quality — restaurants that attract repeated visitors are those that earned their reputation. The medium-low tier shows the lowest mean rating, which may capture "one-time visit" curiosity traffic that does not convert to positive experiences.
+<img width="1516" height="560" alt="image" src="https://github.com/user-attachments/assets/8d43d239-2b60-4e3b-876f-23a571ee0c25" />
+
+**Finding 3 — Rating variance decreases sharply as review count increases.**  
+Standard deviation drops from ~0.98 for restaurants with 1–10 reviews to ~0.42 for restaurants with 500+ reviews. This is a textbook illustration of the Law of Large Numbers: with few reviews, a single outlier experience can dominate the average; with many reviews, ratings converge to a stable estimate of true quality.
+<img width="966" height="416" alt="image" src="https://github.com/user-attachments/assets/756d733f-83b1-4794-8022-7ace112932d5" />
 
 ---
 
