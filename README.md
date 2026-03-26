@@ -81,6 +81,7 @@ Mid-range restaurants ($$: mean = **3.60★**) and upscale restaurants ($$$: mea
 Box plots confirm that all four tiers share near-identical medians (3.5★) and IQRs, indicating that price explains differences in means but not the full shape of the distribution.
 <img width="1516" height="554" alt="image" src="https://github.com/user-attachments/assets/4f7ae827-5e27-4923-a947-d279520f204c" />
 
+**Conclusion:** Price tier significantly affects average ratings, but not in the way one might expect. The `$$`–`$$$` range represents the optimal value-for-money zone, while both budget and luxury ends underperform — suggesting that **diner expectations, not just food quality, drive the rating.**
 
 ### Q2 — Review Volume vs. Star Rating
 
@@ -88,6 +89,8 @@ The Pearson correlation between log(1 + review count) and star rating is **r = +
 
 This relationship likely reflects **survivorship bias**: restaurants accumulating large numbers of reviews tend to be popular and successful, and quality drives both popularity and ratings. It is also possible that review inflation plays a role — very high-review-count establishments may attract fans more than critics.
 <img width="1516" height="554" alt="image" src="https://github.com/user-attachments/assets/99cfdcfa-cb84-45ad-91da-8d6756119fa5" />
+
+**Conclusion:** More reviews weakly predict higher ratings, but the more important effect is on **rating reliability** — high-review restaurants produce scores that are more stable and closer to a restaurant's true perceived quality. A restaurant with 500+ reviews is both better-rated and more trustworthy than one with 5.
 
 ### Q3 — Cuisine Type vs. Star Rating
 
@@ -98,6 +101,8 @@ At the bottom, **Fast Food** averages just **2.56★** (n=2,227), with **Burgers
 The overall mean line (3.55★) cleanly bisects the cuisine chart, with artisanal/specialty categories consistently above it and high-volume fast-casual categories below.
 <img width="1176" height="746" alt="image" src="https://github.com/user-attachments/assets/2227868b-67a2-4020-af6d-53bd00de29a4" />
 
+**Conclusion:** Cuisine type is one of the strongest categorical predictors of rating, with a 1.5-star spread across categories. The pattern is consistent: **niche, artisanal, or experience-driven categories outperform high-volume, standardized ones**, reflecting both actual quality differences and selection effects in who chooses to review each type.
+
 ### Q4 — Geographic Location vs. Star Rating
 
 A one-way ANOVA of city-level mean ratings is also significant (**F = 29.12, p < 0.001**), confirming that geography explains some variance in ratings. Among 15 major cities analyzed, **Santa Barbara, CA** leads at **3.88★**, followed by **New Orleans, LA** (3.76★). At the lower end, **Metairie, LA** averages just **3.41★** and **Tucson, AZ** averages **3.50★**.
@@ -105,12 +110,16 @@ A one-way ANOVA of city-level mean ratings is also significant (**F = 29.12, p <
 The geographic scatter plot shows that ratings are broadly distributed across the continental U.S. and Canada (Edmonton appears in the dataset), with no strong spatial clustering visible at the macro level. Local cultural norms around reviewing behavior, the composition of restaurant categories in each city, and average cost-of-living may all contribute to city-level differences.
 <img width="1715" height="665" alt="image" src="https://github.com/user-attachments/assets/c76b10b9-ecff-4fca-97cf-4adb9ae59360" />
 
+**Conclusion:** City-level differences in ratings are statistically significant but moderate in magnitude. Geography likely acts as a **proxy for underlying factors** — local cuisine composition, reviewer culture, and economic context — rather than being a direct driver of quality.
+
 ### Q5 — Operating Hours vs. Star Rating
 
 Contrary to an intuitive expectation that "busier = better," operating hours show a **negative correlation** with star rating (**r = −0.443, p < 0.001**). The slope in the scatter plot (−0.0134 stars per additional weekly hour) indicates that restaurants open fewer hours per week tend to rate higher.
 
 The binned bar chart confirms this: restaurants open fewer than 30 hours per week average ~**4.07★**, while those open 70–90 hours average ~**3.44★**. This pattern has a plausible interpretation: shorter-hours restaurants tend to be specialty, artisanal, or fine-dining establishments (e.g., a bakery open Tuesday–Saturday mornings), while long-hours operations are disproportionately fast-food chains and 24-hour diners — categories that rate systematically lower.
 <img width="1516" height="554" alt="image" src="https://github.com/user-attachments/assets/200f8ff0-fc53-4cca-94bb-02982dff15f3" />
+
+**Conclusion:** Operating hours is one of the strongest individual correlates of rating (r = −0.443), but this is likely a **confounding effect of restaurant type** rather than a causal relationship. Hours serve as a structural proxy: limited hours signal exclusivity and specialization, which associate with higher ratings.
 
 ### Q6 — Amenity Attributes vs. Star Rating
 
@@ -123,12 +132,16 @@ The results reveal an unexpected split:
 Outdoor seating and reservations are proxies for a higher-end dining experience, explaining their positive effect. The negative sign for delivery is striking — restaurants offering delivery tend to be lower-quality fast-food or chain establishments, driving down their average rating. The "Good for Kids" effect likely reflects a similar confound: family-casual chains dominate that category.
 <img width="1626" height="554" alt="image" src="https://github.com/user-attachments/assets/f95f08e8-8161-4cb8-a1bc-eabf47f760fa" />
 
+**Conclusion:** Amenity attributes are statistically significant predictors, but their effects are **largely driven by what they signal about restaurant type.** Outdoor seating and reservations mark upscale dining; delivery and kid-friendliness mark casual chains. The attributes act as proxies, not direct causes.
+
 ### Q7 — Review Sentiment vs. Star Rating
 
 TextBlob polarity scores computed on 50,000 sampled reviews confirm strong alignment between review text sentiment and star ratings. Mean sentiment rises monotonically across star tiers: 1-star reviews average approximately **−0.04** polarity (slightly negative), 2-star reviews ~**0.08**, 3-star reviews ~**0.20**, 4-star reviews ~**0.30**, and 5-star reviews ~**0.36** (strongly positive).
 
 The violin plots show that sentiment distributions are broadly overlapping across star levels, reflecting the well-known limitation of lexical sentiment analysis: a review can be linguistically positive while still expressing disappointment relative to expectations. Nonetheless, the directional signal is robust and consistent.
 <img width="1846" height="554" alt="image" src="https://github.com/user-attachments/assets/d84de10d-7df4-4f7f-bf66-57512d069335" />
+
+**Conclusion:** Review text sentiment and star ratings are strongly and consistently aligned, validating both as measuring the same underlying construct — customer satisfaction. However, **text sentiment alone cannot substitute for star ratings**: the two signals together provide a more complete picture of customer experience than either alone.
 
 ### Temporal Analysis -- Does a Restaurant's Rating Change Over Time?
 **Finding 1 — Ratings drift upward over time, but slowly.**
@@ -176,7 +189,7 @@ The correlation heatmap confirms the single largest predictor correlation is the
 Across nine sub-questions and over 67,000 restaurant records, a coherent picture emerges of how Yelp star ratings are shaped:
 
 **What drives ratings up:**
-- Mid-range pricing ($–$$), hitting the value-for-money sweet spot
+- Mid-range pricing (`$`–`$$`), hitting the value-for-money sweet spot
 - Niche or artisanal cuisine categories (specialty food, desserts, bakeries)
 - Upscale amenities like outdoor seating and reservations
 - A large, established review base — which both reflects and reinforces quality
@@ -213,6 +226,8 @@ To complement the static notebook analysis, this project includes an **interacti
 | Q5 — Operating Hours | Scatter plot with trend line + binned averages; negative correlation visualized clearly |
 | Q6 — Amenity Attributes | Side-by-side difference chart and grouped bar; full Mann-Whitney U statistics table |
 | Q7 — Review Sentiment | Sentiment-by-star bar chart + business-level scatter; requires `mean_sentiment` column in CSV |
+| Temporal Analysis — Rating Over Time | Monthly avg rating trend line + review volume overlay + restaurant lifecycle curve + seasonal bar chart |
+| Popularity vs. Quality | Review count scatter + rating-by-bucket boxplot + check-in tier violin plot + rating variance line chart |
 | 📈 Multivariate | Interactive correlation heatmap + standardized regression coefficients + customizable scatter matrix |
 
 ### Global Filters (Sidebar)
