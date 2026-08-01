@@ -9,7 +9,7 @@
 [![Dataset](https://img.shields.io/badge/Data-Yelp%20Open%20Dataset-D32323?logo=yelp&logoColor=white)](https://www.yelp.com/dataset)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**Contributors:** He (Helen) Tu (lead), Xiangjia Lei
+**Contributors:** He (Helen) Tu (lead), Siye Li
 **Course:** ECON-UB 232 Data Bootcamp, NYU Stern — Spring 2026
 
 ![Streamlit dashboard](images/streamlit-dashboard.png)
