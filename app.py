@@ -61,10 +61,14 @@ st.markdown("""
 # ── Data loading ───────────────────────────────────────────────────────────────
 @st.cache_data(show_spinner="Loading data…")
 def load_data():
-    # Try relative path first, then absolute fallback
+    # Look next to this file first so the app runs from any working directory,
+    # then fall back to a plain relative path.
+    here = os.path.dirname(os.path.abspath(__file__))
     for path in [
+        os.path.join(here, "data", "yelp_restaurants_clean.csv"),
+        os.path.join("data", "yelp_restaurants_clean.csv"),
+        os.path.join(here, "yelp_restaurants_clean.csv"),
         "yelp_restaurants_clean.csv",
-        os.path.join(os.path.dirname(__file__), "yelp_restaurants_clean.csv"),
     ]:
         if os.path.exists(path):
             df = pd.read_csv(path, low_memory=False)
@@ -78,9 +82,9 @@ try:
     df = load_data()
 except FileNotFoundError:
     st.error(
-        "⚠️ **`yelp_restaurants_clean.csv` not found.**\n\n"
-        "Run the export cell at the bottom of your notebook first, "
-        "then place the CSV in the same folder as `app.py`."
+        "**`data/yelp_restaurants_clean.csv` not found.**\n\n"
+        "It ships with the repository. If it is missing, regenerate it by running "
+        "the export cell at the end of `notebooks/01_yelp_eda.ipynb`."
     )
     st.stop()
 

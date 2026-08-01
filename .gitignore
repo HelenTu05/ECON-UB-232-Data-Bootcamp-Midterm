@@ -1,0 +1,24 @@
+# Raw Yelp JSON — download separately, see data/README.md
+data/yelp_dataset/
+*.json
+*.tar
+
+# Notebook / Python artifacts
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# Environments
+.venv/
+venv/
+env/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
